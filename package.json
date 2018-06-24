@@ -4,6 +4,7 @@
     "description": "Math extended",
     "author": "Eric Kevrel",
     "license": "MIT",
+    "repository": "0x2E757/MathExt",
     "keywords": [
         "math",
         "geometry",
