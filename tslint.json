@@ -1,0 +1,29 @@
+{
+    "rules": {
+        "await-promise": true,
+        "class-name": true,
+        "interface-name": true,
+        "only-arrow-functions": true,
+        "arrow-parens": true,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": "always",
+                "singleline": "never"
+            }
+        ],
+        "quotemark": [
+            true,
+            "double",
+            "avoid-escape"
+        ],
+        "member-access": [
+            true,
+            "check-accessor"
+        ],
+        "semicolon": [
+            true,
+            "always"
+        ]
+    }
+}
