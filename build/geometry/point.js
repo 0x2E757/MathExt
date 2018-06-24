@@ -189,4 +189,8 @@ Point.prototype.roundZ = function (...args) {
     this.z = utils.round(this.z, fractionDigits);
     return this;
 };
+Point.prototype.distance = function (...args) {
+    const [point] = args;
+    return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2) + Math.pow(this.z - point.z, 2));
+};
 //# sourceMappingURL=point.js.map

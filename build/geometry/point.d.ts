@@ -74,5 +74,8 @@ export declare class Point implements IPoint, IBase {
     roundZ: {
         (fractionDigits: number): Point;
     };
+    distance: {
+        (point: IPoint): number;
+    };
 }
 //# sourceMappingURL=point.d.ts.map

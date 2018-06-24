@@ -115,6 +115,10 @@ export class Point implements IPoint, IBase {
         (fractionDigits: number): Point;
     };
 
+    public distance!: {
+        (point: IPoint): number;
+    };
+
 }
 
 Point.prototype.shift = function (...args: any[]): Point {
@@ -340,4 +344,11 @@ Point.prototype.roundZ = function (...args: any[]): Point {
     const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
     this.z = utils.round(this.z, fractionDigits);
     return this;
+};
+
+Point.prototype.distance = function (...args: any[]): number {
+    // (point: IPoint): number
+    type ExpectedArgs = [IPoint];
+    const [point]: ExpectedArgs = args as ExpectedArgs;
+    return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2) + Math.pow(this.z - point.z, 2));
 };
