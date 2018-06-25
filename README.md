@@ -239,13 +239,13 @@ normalize = () => Rect
 ```
 
 ```typescript
-topLeft () => IPoint
+topLeft = () => IPoint
 topLeft = (left: number, top: number) => Rect
 topLeft = (topLeft: IPoint) => Rect
 ```
 
 ```typescript
-topRight () => IPoint
+topRight = () => IPoint
 topRight = (right: number, top: number) => Rect
 topRight = (topRight: IPoint) => Rect
 ```
