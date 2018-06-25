@@ -21,18 +21,18 @@ export class Point implements IPoint, IBase {
     constructor(x: number, y: number);
     constructor(x: number, y: number, z: number);
     constructor(point: IPoint);
-    constructor(...args: any[]) {
-        if (args.length === 1 && typeof args[0] === "object") {
+    constructor() {
+        if (arguments.length === 1 && typeof arguments[0] === "object") {
             // (point: IPoint): Point
             type ExpectedArgs = [IPoint];
-            const [point]: ExpectedArgs = args as ExpectedArgs;
+            const [point]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.x = point.x;
             this.y = point.y;
             this.z = point.z;
         } else {
             // (x: number = 0, y: number = 0, z: number = 0): Point
             type ExpectedArgs = [number, number, number];
-            const [x, y, z]: ExpectedArgs = args as ExpectedArgs;
+            const [x, y, z]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.x = x || 0;
             this.y = y || 0;
             this.z = z || 0;
@@ -121,31 +121,31 @@ export class Point implements IPoint, IBase {
 
 }
 
-Point.prototype.shift = function (...args: any[]): Point {
-    if (args.length === 1) {
-        if (typeof args[0] === "object") {
+Point.prototype.shift = function (): Point {
+    if (arguments.length === 1) {
+        if (typeof arguments[0] === "object") {
             // (offset: IPoint): Point
             type ExpectedArgs = [IPoint];
-            const [offset]: ExpectedArgs = args as ExpectedArgs;
+            const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.x += offset.x;
             this.y += offset.y;
             this.z += offset.z;
         } else {
             // (offsetX: number): Point
             type ExpectedArgs = [number];
-            const [offsetX]: ExpectedArgs = args as ExpectedArgs;
+            const [offsetX]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.x += offsetX;
         }
-    } else if (args.length === 2) {
+    } else if (arguments.length === 2) {
         // (offsetX: number, offsetY: number): Point
         type ExpectedArgs = [number, number];
-        const [offsetX, offsetY]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetX, offsetY]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x += offsetX;
         this.y += offsetY;
     } else {
         // (offsetX: number, offsetY: number, offsetZ: number): Point
         type ExpectedArgs = [number, number, number];
-        const [offsetX, offsetY, offsetZ]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetX, offsetY, offsetZ]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x += offsetX;
         this.y += offsetY;
         this.z += offsetZ;
@@ -153,46 +153,46 @@ Point.prototype.shift = function (...args: any[]): Point {
     return this;
 };
 
-Point.prototype.shiftX = function (...args: any[]): Point {
+Point.prototype.shiftX = function (): Point {
     // (offset: number): Point
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.x += offset;
     return this;
 };
 
-Point.prototype.shiftY = function (...args: any[]): Point {
+Point.prototype.shiftY = function (): Point {
     // (offset: number): Point
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.y += offset;
     return this;
 };
 
-Point.prototype.shiftZ = function (...args: any[]): Point {
+Point.prototype.shiftZ = function (): Point {
     // (offset: number): Point
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.z += offset;
     return this;
 };
 
-Point.prototype.multiply = function (...args: any[]): Point {
-    if (args.length === 1) {
+Point.prototype.multiply = function (): Point {
+    if (arguments.length === 1) {
         // (multiplierX: number): Point
         type ExpectedArgs = [number];
-        const [multiplierX]: ExpectedArgs = args as ExpectedArgs;
+        const [multiplierX]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x *= multiplierX;
-    } else if (args.length === 2) {
+    } else if (arguments.length === 2) {
         // (multiplierX: number, multiplierY: number): Point
         type ExpectedArgs = [number, number];
-        const [multiplierX, multiplierY]: ExpectedArgs = args as ExpectedArgs;
+        const [multiplierX, multiplierY]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x *= multiplierX;
         this.y *= multiplierY;
     } else {
         // (multiplierX: number, multiplierY: number, multiplierZ: number): Point
         type ExpectedArgs = [number, number, number];
-        const [multiplierX, multiplierY, multiplierZ]: ExpectedArgs = args as ExpectedArgs;
+        const [multiplierX, multiplierY, multiplierZ]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x *= multiplierX;
         this.y *= multiplierY;
         this.z *= multiplierZ;
@@ -200,56 +200,56 @@ Point.prototype.multiply = function (...args: any[]): Point {
     return this;
 };
 
-Point.prototype.multiplyX = function (...args: any[]): Point {
+Point.prototype.multiplyX = function (): Point {
     // (multiplier: number): Point
     type ExpectedArgs = [number];
-    const [multiplier]: ExpectedArgs = args as ExpectedArgs;
+    const [multiplier]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.x *= multiplier;
     return this;
 };
 
-Point.prototype.multiplyY = function (...args: any[]): Point {
+Point.prototype.multiplyY = function (): Point {
     // (multiplier: number): Point
     type ExpectedArgs = [number];
-    const [multiplier]: ExpectedArgs = args as ExpectedArgs;
+    const [multiplier]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.y *= multiplier;
     return this;
 };
 
-Point.prototype.multiplyZ = function (...args: any[]): Point {
+Point.prototype.multiplyZ = function (): Point {
     // (multiplier: number): Point
     type ExpectedArgs = [number];
-    const [multiplier]: ExpectedArgs = args as ExpectedArgs;
+    const [multiplier]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.z *= multiplier;
     return this;
 };
 
-Point.prototype.clamp = function (...args: any[]): Point {
-    if (args.length === 1) {
+Point.prototype.clamp = function (): Point {
+    if (arguments.length === 1) {
         // (range: IRange): Point
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.clamp(this.x, range);
         this.y = utils.clamp(this.y, range);
         this.z = utils.clamp(this.z, range);
-    } else if (args.length === 2) {
+    } else if (arguments.length === 2) {
         // (min: number, max: number): Point
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.clamp(this.x, min, max);
         this.y = utils.clamp(this.y, min, max);
         this.z = utils.clamp(this.z, min, max);
-    } else if (args.length === 3) {
+    } else if (arguments.length === 3) {
         // (rangeX: IRange, rangeY: IRange, rangeZ: IRange): Point
         type ExpectedArgs = [IRange, IRange, IRange];
-        const [rangeX, rangeY, rangeZ]: ExpectedArgs = args as ExpectedArgs;
+        const [rangeX, rangeY, rangeZ]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.clamp(this.x, rangeX);
         this.y = utils.clamp(this.y, rangeY);
         this.z = utils.clamp(this.z, rangeZ);
     } else {
         // (minX: number, maxX: number, minY: number, maxY: number, minZ: number, maxZ: number): Point
         type ExpectedArgs = [number, number, number, number, number, number];
-        const [minX, maxX, minY, maxY, minZ, maxZ]: ExpectedArgs = args as ExpectedArgs;
+        const [minX, maxX, minY, maxY, minZ, maxZ]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.clamp(this.x, minX, maxX);
         this.y = utils.clamp(this.y, minY, maxY);
         this.z = utils.clamp(this.z, minZ, maxZ);
@@ -258,63 +258,63 @@ Point.prototype.clamp = function (...args: any[]): Point {
     return this;
 };
 
-Point.prototype.clampX = function (...args: any[]): Point {
-    if (args.length === 1) {
+Point.prototype.clampX = function (): Point {
+    if (arguments.length === 1) {
         // (range: IRange): Point
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.clamp(this.x, range);
     } else {
         // (min: number, max: number): Point
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.clamp(this.x, min, max);
     }
     return this;
 };
 
-Point.prototype.clampY = function (...args: any[]): Point {
-    if (args.length === 1) {
+Point.prototype.clampY = function (): Point {
+    if (arguments.length === 1) {
         // (range: IRange): Point
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.y = utils.clamp(this.y, range);
     } else {
         // (min: number, max: number): Point
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.y = utils.clamp(this.y, min, max);
     }
     return this;
 };
 
-Point.prototype.clampZ = function (...args: any[]): Point {
-    if (args.length === 1) {
+Point.prototype.clampZ = function (): Point {
+    if (arguments.length === 1) {
         // (range: IRange): Point
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.z = utils.clamp(this.z, range);
     } else {
         // (min: number, max: number): Point
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.z = utils.clamp(this.z, min, max);
     }
     return this;
 };
 
-Point.prototype.round = function (...args: any[]): Point {
-    if (args.length === 1) {
+Point.prototype.round = function (): Point {
+    if (arguments.length === 1) {
         // (fractionDigits: number): Point
         type ExpectedArgs = [number];
-        const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+        const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.round(this.x, fractionDigits);
         this.y = utils.round(this.y, fractionDigits);
         this.z = utils.round(this.z, fractionDigits);
     } else {
         // (fractionDigitsX: number, fractionDigitsY: number, fractionDigitsZ: number): Point
         type ExpectedArgs = [number, number, number];
-        const [fractionDigitsX, fractionDigitsY, fractionDigitsZ]: ExpectedArgs = args as ExpectedArgs;
+        const [fractionDigitsX, fractionDigitsY, fractionDigitsZ]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.x = utils.round(this.x, fractionDigitsX);
         this.y = utils.round(this.y, fractionDigitsY);
         this.z = utils.round(this.z, fractionDigitsZ);
@@ -322,33 +322,33 @@ Point.prototype.round = function (...args: any[]): Point {
     return this;
 };
 
-Point.prototype.roundX = function (...args: any[]): Point {
+Point.prototype.roundX = function (): Point {
     // (fractionDigits: number): Point
     type ExpectedArgs = [number];
-    const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+    const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.x = utils.round(this.x, fractionDigits);
     return this;
 };
 
-Point.prototype.roundY = function (...args: any[]): Point {
+Point.prototype.roundY = function (): Point {
     // (fractionDigits: number): Point
     type ExpectedArgs = [number];
-    const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+    const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.y = utils.round(this.y, fractionDigits);
     return this;
 };
 
-Point.prototype.roundZ = function (...args: any[]): Point {
+Point.prototype.roundZ = function (): Point {
     // (fractionDigits: number): Point
     type ExpectedArgs = [number];
-    const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+    const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.z = utils.round(this.z, fractionDigits);
     return this;
 };
 
-Point.prototype.distance = function (...args: any[]): number {
+Point.prototype.distance = function (): number {
     // (point: IPoint): number
     type ExpectedArgs = [IPoint];
-    const [point]: ExpectedArgs = args as ExpectedArgs;
+    const [point]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     return Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2) + Math.pow(this.z - point.z, 2));
 };

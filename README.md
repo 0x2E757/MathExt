@@ -2,6 +2,8 @@
 
 Library with useful math functions like `clamp` and `random` with parameters and simple geometry classes. Library mostly oriented to be used with any kind of simple graphics. Also class objects support chaining.
 
+TypeScript code transpiled to ES3 JavaScript.
+
 ## Install
 
 ```bash

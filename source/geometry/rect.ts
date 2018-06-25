@@ -23,12 +23,12 @@ export class Rect implements IRect, IBase {
     constructor(left: number, top: number, right: number, bottom: number);
     constructor(topLeft: IPoint, bottomRight: IPoint);
     constructor(rect: IRect);
-    constructor(...args: any[]) {
-        if (typeof args[0] === "object") {
-            if (args.length === 1) {
+    constructor() {
+        if (typeof arguments[0] === "object") {
+            if (arguments.length === 1) {
                 // (rect: IRect): Rect
                 type ExpectedArgs = [IRect];
-                const [rect]: ExpectedArgs = args as ExpectedArgs;
+                const [rect]: ExpectedArgs = <ExpectedArgs>(arguments as any);
                 this.left = rect.left;
                 this.top = rect.top;
                 this.right = rect.right;
@@ -36,7 +36,7 @@ export class Rect implements IRect, IBase {
             } else {
                 // (topLeft: IPoint, bottomRight: IPoint): Rect
                 type ExpectedArgs = [IPoint, IPoint];
-                const [topLeft, bottomRight]: ExpectedArgs = args as ExpectedArgs;
+                const [topLeft, bottomRight]: ExpectedArgs = <ExpectedArgs>(arguments as any);
                 this.left = topLeft.x;
                 this.top = topLeft.y;
                 this.right = bottomRight.x;
@@ -45,7 +45,7 @@ export class Rect implements IRect, IBase {
         } else {
             // (left: number = 0, top: number = 0, right: number = 0, bottom: number = 0): Rect
             type ExpectedArgs = [number, number, number, number];
-            const [left, top, right, bottom]: ExpectedArgs = args as ExpectedArgs;
+            const [left, top, right, bottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.left = left || 0;
             this.top = top || 0;
             this.right = right || 0;
@@ -235,19 +235,19 @@ export class Rect implements IRect, IBase {
 
 }
 
-Rect.prototype.shift = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shift = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: IPoint): Rect
         type ExpectedArgs = [IPoint];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offset.x;
         this.top += offset.y;
         this.right += offset.x;
         this.bottom += offset.y;
-    } else if (args.length === 2) {
+    } else if (arguments.length === 2) {
         // (offsetHorizontal: number, offsetVertical: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetHorizontal, offsetVertical]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetHorizontal, offsetVertical]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offsetHorizontal;
         this.top += offsetVertical;
         this.right += offsetHorizontal;
@@ -255,7 +255,7 @@ Rect.prototype.shift = function (...args: any[]): Rect {
     } else {
         // (offsetLeft: number, offsetTop: number, offsetRight: number, offsetBottom: number): Rect
         type ExpectedArgs = [number, number, number, number];
-        const [offsetLeft, offsetTop, offsetRight, offsetBottom]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetLeft, offsetTop, offsetRight, offsetBottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offsetLeft;
         this.top += offsetTop;
         this.right += offsetRight;
@@ -264,145 +264,145 @@ Rect.prototype.shift = function (...args: any[]): Rect {
     return this;
 };
 
-Rect.prototype.shiftLeft = function (...args: any[]): Rect {
+Rect.prototype.shiftLeft = function (): Rect {
     // (offset: number): Rect
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.left += offset;
     return this;
 };
 
-Rect.prototype.shiftTop = function (...args: any[]): Rect {
+Rect.prototype.shiftTop = function (): Rect {
     // (offset: number): Rect
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.top += offset;
     return this;
 };
 
-Rect.prototype.shiftRight = function (...args: any[]): Rect {
+Rect.prototype.shiftRight = function (): Rect {
     // (offset: number): Rect
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.right += offset;
     return this;
 };
 
-Rect.prototype.shiftBottom = function (...args: any[]): Rect {
+Rect.prototype.shiftBottom = function (): Rect {
     // (offset: number): Rect
     type ExpectedArgs = [number];
-    const [offset]: ExpectedArgs = args as ExpectedArgs;
+    const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.bottom += offset;
     return this;
 };
 
-Rect.prototype.shiftHorizontal = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shiftHorizontal = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: number): Rect
         type ExpectedArgs = [number];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offset;
         this.right += offset;
     } else {
         // (offsetLeft: number, offsetRight: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetLeft, offsetRight]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetLeft, offsetRight]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offsetLeft;
         this.right += offsetRight;
     }
     return this;
 };
 
-Rect.prototype.shiftVertical = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shiftVertical = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: number): Rect
         type ExpectedArgs = [number];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.top += offset;
         this.bottom += offset;
     } else {
         // (offsetLeft: number, offsetRight: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetTop, offsetBottom]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetTop, offsetBottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.top += offsetTop;
         this.bottom += offsetBottom;
     }
     return this;
 };
 
-Rect.prototype.shiftTopLeft = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shiftTopLeft = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: number): Rect
         type ExpectedArgs = [number];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offset;
         this.top += offset;
     } else {
         // (offsetLeft: number, offsetTop: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetLeft, offsetTop]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetLeft, offsetTop]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offsetLeft;
         this.top += offsetTop;
     }
     return this;
 };
 
-Rect.prototype.shiftTopRight = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shiftTopRight = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: number): Rect
         type ExpectedArgs = [number];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right += offset;
         this.top += offset;
     } else {
         // (offsetRight: number, offsetTop: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetRight, offsetTop]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetRight, offsetTop]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right += offsetRight;
         this.top += offsetTop;
     }
     return this;
 };
 
-Rect.prototype.shiftBottomLeft = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shiftBottomLeft = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: number): Rect
         type ExpectedArgs = [number];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offset;
         this.bottom += offset;
     } else {
         // (offsetLeft: number, offsetBottom: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetLeft, offsetBottom]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetLeft, offsetBottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left += offsetLeft;
         this.bottom += offsetBottom;
     }
     return this;
 };
 
-Rect.prototype.shiftBottomRight = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.shiftBottomRight = function (): Rect {
+    if (arguments.length === 1) {
         // (offset: number): Rect
         type ExpectedArgs = [number];
-        const [offset]: ExpectedArgs = args as ExpectedArgs;
+        const [offset]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right += offset;
         this.bottom += offset;
     } else {
         // (offsetRight: number, offsetBottom: number): Rect
         type ExpectedArgs = [number, number];
-        const [offsetRight, offsetBottom]: ExpectedArgs = args as ExpectedArgs;
+        const [offsetRight, offsetBottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right += offsetRight;
         this.bottom += offsetBottom;
     }
     return this;
 };
 
-Rect.prototype.multiply = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.multiply = function (): Rect {
+    if (arguments.length === 1) {
         // (multiplier: number): Rect
         type ExpectedArgs = [number];
-        const [multiplier]: ExpectedArgs = args as ExpectedArgs;
+        const [multiplier]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left *= multiplier;
         this.top *= multiplier;
         this.right *= multiplier;
@@ -410,7 +410,7 @@ Rect.prototype.multiply = function (...args: any[]): Rect {
     } else {
         // (multiplierHorizontal: number, multiplierVertical: number): Rect
         type ExpectedArgs = [number, number];
-        const [multiplierHorizontal, multiplierVertical]: ExpectedArgs = args as ExpectedArgs;
+        const [multiplierHorizontal, multiplierVertical]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left *= multiplierHorizontal;
         this.top *= multiplierVertical;
         this.right *= multiplierHorizontal;
@@ -420,38 +420,38 @@ Rect.prototype.multiply = function (...args: any[]): Rect {
     return this;
 };
 
-Rect.prototype.multiplyHorizontal = function (...args: any[]): Rect {
+Rect.prototype.multiplyHorizontal = function (): Rect {
     // (multiplier: number): Rect
     type ExpectedArgs = [number];
-    const [multiplier]: ExpectedArgs = args as ExpectedArgs;
+    const [multiplier]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.left *= multiplier;
     this.right *= multiplier;
     return this;
 };
 
-Rect.prototype.multiplyVertical = function (...args: any[]): Rect {
+Rect.prototype.multiplyVertical = function (): Rect {
     // (multiplier: number): Rect
     type ExpectedArgs = [number];
-    const [multiplier]: ExpectedArgs = args as ExpectedArgs;
+    const [multiplier]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.top *= multiplier;
     this.bottom *= multiplier;
     return this;
 };
 
-Rect.prototype.clamp = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clamp = function (): Rect {
+    if (arguments.length === 1) {
         // (rect: IRect): Rect
         type ExpectedArgs = [IRect];
-        const [rect]: ExpectedArgs = args as ExpectedArgs;
+        const [rect]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, rect.left, rect.right);
         this.top = utils.clamp(this.top, rect.top, rect.bottom);
         this.right = utils.clamp(this.right, rect.left, rect.right);
         this.bottom = utils.clamp(this.bottom, rect.top, rect.bottom);
-    } else if (args.length === 2) {
-        if (typeof args[0] === "object") {
+    } else if (arguments.length === 2) {
+        if (typeof arguments[0] === "object") {
             // (rangeHorizontal: IRange, rangeVertical: IRange): Rect
             type ExpectedArgs = [IRange, IRange];
-            const [rangeHorizontal, rangeVertical]: ExpectedArgs = args as ExpectedArgs;
+            const [rangeHorizontal, rangeVertical]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.left = utils.clamp(this.left, rangeHorizontal);
             this.top = utils.clamp(this.top, rangeVertical);
             this.right = utils.clamp(this.right, rangeHorizontal);
@@ -459,17 +459,17 @@ Rect.prototype.clamp = function (...args: any[]): Rect {
         } else {
             // (min: number, max: number): Rect
             type ExpectedArgs = [number, number];
-            const [min, max]: ExpectedArgs = args as ExpectedArgs;
+            const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.left = utils.clamp(this.left, min, max);
             this.top = utils.clamp(this.top, min, max);
             this.right = utils.clamp(this.right, min, max);
             this.bottom = utils.clamp(this.bottom, min, max);
         }
-    } else if (args.length === 4) {
-        if (typeof args[0] === "object") {
+    } else if (arguments.length === 4) {
+        if (typeof arguments[0] === "object") {
             // (rangeLeft: IRange, rangeTop: IRange, rangeRight: IRange, rangeBottom: IRange): Rect
             type ExpectedArgs = [IRange, IRange, IRange, IRange];
-            const [rangeLeft, rangeTop, rangeRight, rangeBottom]: ExpectedArgs = args as ExpectedArgs;
+            const [rangeLeft, rangeTop, rangeRight, rangeBottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.left = utils.clamp(this.left, rangeLeft);
             this.top = utils.clamp(this.top, rangeTop);
             this.right = utils.clamp(this.right, rangeRight);
@@ -477,7 +477,7 @@ Rect.prototype.clamp = function (...args: any[]): Rect {
         } else {
             // (minHorizontal: number, maxHorizontal: number, minVertical: number, maxVertical: number): Rect
             type ExpectedArgs = [number, number, number, number];
-            const [minHorizontal, maxHorizontal, minVertical, maxVertical]: ExpectedArgs = args as ExpectedArgs;
+            const [minHorizontal, maxHorizontal, minVertical, maxVertical]: ExpectedArgs = <ExpectedArgs>(arguments as any);
             this.left = utils.clamp(this.left, minHorizontal, maxHorizontal);
             this.top = utils.clamp(this.top, minVertical, maxVertical);
             this.right = utils.clamp(this.right, minHorizontal, maxHorizontal);
@@ -486,7 +486,7 @@ Rect.prototype.clamp = function (...args: any[]): Rect {
     } else {
         // (minLeft: number, maxLeft: number, minTop: number, maxTop: number, minRight: number, maxRight: number, minBottom: number, maxBottom: number): Rect
         type ExpectedArgs = [number, number, number, number, number, number, number, number];
-        const [minLeft, maxLeft, minTop, maxTop, minRight, maxRight, minBottom, maxBottom]: ExpectedArgs = args as ExpectedArgs;
+        const [minLeft, maxLeft, minTop, maxTop, minRight, maxRight, minBottom, maxBottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, minLeft, maxLeft);
         this.top = utils.clamp(this.top, minTop, maxTop);
         this.right = utils.clamp(this.right, minRight, maxRight);
@@ -495,173 +495,173 @@ Rect.prototype.clamp = function (...args: any[]): Rect {
     return this;
 };
 
-Rect.prototype.clampLeft = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampLeft = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampTop = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampTop = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.top = utils.clamp(this.top, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.top = utils.clamp(this.top, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampRight = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampRight = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = utils.clamp(this.right, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = utils.clamp(this.right, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampBottom = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampBottom = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.bottom = utils.clamp(this.bottom, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.bottom = utils.clamp(this.bottom, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampHorizontal = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampHorizontal = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, range);
         this.right = utils.clamp(this.right, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, min, max);
         this.right = utils.clamp(this.right, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampVertical = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampVertical = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.top = utils.clamp(this.top, range);
         this.bottom = utils.clamp(this.bottom, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.top = utils.clamp(this.top, min, max);
         this.bottom = utils.clamp(this.bottom, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampTopLeft = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampTopLeft = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, range);
         this.top = utils.clamp(this.top, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, min, max);
         this.top = utils.clamp(this.top, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampTopRight = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampTopRight = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = utils.clamp(this.right, range);
         this.top = utils.clamp(this.top, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = utils.clamp(this.right, min, max);
         this.top = utils.clamp(this.top, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampBottomLeft = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampBottomLeft = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, range);
         this.bottom = utils.clamp(this.bottom, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.clamp(this.left, min, max);
         this.bottom = utils.clamp(this.bottom, min, max);
     }
     return this;
 };
 
-Rect.prototype.clampBottomRight = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.clampBottomRight = function (): Rect {
+    if (arguments.length === 1) {
         // (range: IRange): Rect
         type ExpectedArgs = [IRange];
-        const [range]: ExpectedArgs = args as ExpectedArgs;
+        const [range]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = utils.clamp(this.right, range);
         this.bottom = utils.clamp(this.bottom, range);
     } else {
         // (min: number, max: number): Rect
         type ExpectedArgs = [number, number];
-        const [min, max]: ExpectedArgs = args as ExpectedArgs;
+        const [min, max]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = utils.clamp(this.right, min, max);
         this.bottom = utils.clamp(this.bottom, min, max);
     }
     return this;
 };
 
-Rect.prototype.round = function (...args: any[]): Rect {
-    if (args.length === 1) {
+Rect.prototype.round = function (): Rect {
+    if (arguments.length === 1) {
         // (fractionDigits: number): Rect
         type ExpectedArgs = [number];
-        const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+        const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.round(this.left, fractionDigits);
         this.top = utils.round(this.top, fractionDigits);
         this.right = utils.round(this.right, fractionDigits);
@@ -669,7 +669,7 @@ Rect.prototype.round = function (...args: any[]): Rect {
     } else {
         // (fractionDigitsHorizontal: number, fractionDigitsVertical: number): Rect
         type ExpectedArgs = [number, number];
-        const [fractionDigitsHorizontal, fractionDigitsVertical]: ExpectedArgs = args as ExpectedArgs;
+        const [fractionDigitsHorizontal, fractionDigitsVertical]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = utils.round(this.left, fractionDigitsHorizontal);
         this.top = utils.round(this.top, fractionDigitsVertical);
         this.right = utils.round(this.right, fractionDigitsHorizontal);
@@ -678,19 +678,19 @@ Rect.prototype.round = function (...args: any[]): Rect {
     return this;
 };
 
-Rect.prototype.roundHorizontal = function (...args: any[]): Rect {
+Rect.prototype.roundHorizontal = function (): Rect {
     // (fractionDigits: number): Rect
     type ExpectedArgs = [number];
-    const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+    const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.left = utils.round(this.left, fractionDigits);
     this.right = utils.round(this.right, fractionDigits);
     return this;
 };
 
-Rect.prototype.roundVertical = function (...args: any[]): Rect {
+Rect.prototype.roundVertical = function (): Rect {
     // (fractionDigits: number): Rect
     type ExpectedArgs = [number];
-    const [fractionDigits]: ExpectedArgs = args as ExpectedArgs;
+    const [fractionDigits]: ExpectedArgs = <ExpectedArgs>(arguments as any);
     this.top = utils.round(this.top, fractionDigits);
     this.bottom = utils.round(this.bottom, fractionDigits);
     return this;
@@ -711,98 +711,98 @@ Rect.prototype.normalize = function (): Rect {
     return this;
 };
 
-Rect.prototype.topLeft = function (...args: any[]): any {
-    if (args.length === 0) {
+Rect.prototype.topLeft = function (): any {
+    if (arguments.length === 0) {
         // (): IPoint
         return new Point(this.left, this.top);
-    } else if (args.length === 1) {
+    } else if (arguments.length === 1) {
         // (topLeft: IPoint): Rect
         type ExpectedArgs = [IPoint];
-        const [topLeft]: ExpectedArgs = args as ExpectedArgs;
+        const [topLeft]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = topLeft.x;
         this.top = topLeft.y;
         return this;
     } else {
         // (left: number, top: number): Rect
         type ExpectedArgs = [number, number];
-        const [left, top]: ExpectedArgs = args as ExpectedArgs;
+        const [left, top]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = left;
         this.top = top;
         return this;
     }
 };
 
-Rect.prototype.topRight = function (...args: any[]): any {
-    if (args.length === 0) {
+Rect.prototype.topRight = function (): any {
+    if (arguments.length === 0) {
         // (): IPoint
         return new Point(this.right, this.top);
-    } else if (args.length === 1) {
+    } else if (arguments.length === 1) {
         // (topRight: IPoint): Rect
         type ExpectedArgs = [IPoint];
-        const [topLeft]: ExpectedArgs = args as ExpectedArgs;
+        const [topLeft]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = topLeft.x;
         this.top = topLeft.y;
         return this;
     } else {
         // (right: number, top: number): Rect
         type ExpectedArgs = [number, number];
-        const [right, top]: ExpectedArgs = args as ExpectedArgs;
+        const [right, top]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = right;
         this.top = top;
         return this;
     }
 };
 
-Rect.prototype.bottomLeft = function (...args: any[]): any {
-    if (args.length === 0) {
+Rect.prototype.bottomLeft = function (): any {
+    if (arguments.length === 0) {
         // (): IPoint
         return new Point(this.left, this.bottom);
-    } else if (args.length === 1) {
+    } else if (arguments.length === 1) {
         // (bottomLeft: IPoint): Rect
         type ExpectedArgs = [IPoint];
-        const [bottomLeft]: ExpectedArgs = args as ExpectedArgs;
+        const [bottomLeft]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = bottomLeft.x;
         this.bottom = bottomLeft.y;
         return this;
     } else {
         // (left: number, bottom: number): Rect
         type ExpectedArgs = [number, number];
-        const [left, bottom]: ExpectedArgs = args as ExpectedArgs;
+        const [left, bottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.left = left;
         this.bottom = bottom;
         return this;
     }
 };
 
-Rect.prototype.bottomRight = function (...args: any[]): any {
-    if (args.length === 0) {
+Rect.prototype.bottomRight = function (): any {
+    if (arguments.length === 0) {
         // (): IPoint
         return new Point(this.right, this.bottom);
-    } else if (args.length === 1) {
+    } else if (arguments.length === 1) {
         // (bottomRight: IPoint): Rect
         type ExpectedArgs = [IPoint];
-        const [bottomLeft]: ExpectedArgs = args as ExpectedArgs;
+        const [bottomLeft]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = bottomLeft.x;
         this.bottom = bottomLeft.y;
         return this;
     } else {
         // (right: number, bottom: number): Rect
         type ExpectedArgs = [number, number];
-        const [right, bottom]: ExpectedArgs = args as ExpectedArgs;
+        const [right, bottom]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         this.right = right;
         this.bottom = bottom;
         return this;
     }
 };
 
-Rect.prototype.width = function (...args: any[]): any {
-    if (args.length === 0) {
+Rect.prototype.width = function (): any {
+    if (arguments.length === 0) {
         // (): number
         return this.right - this.left;
     } else {
         // (width: number): Rect
         type ExpectedArgs = [number];
-        const [width]: ExpectedArgs = args as ExpectedArgs;
+        const [width]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         const difference: number = width - (this.right - this.left);
         this.left -= difference / 2;
         this.right += difference / 2;
@@ -810,14 +810,14 @@ Rect.prototype.width = function (...args: any[]): any {
     }
 };
 
-Rect.prototype.height = function (...args: any[]): any {
-    if (args.length === 0) {
+Rect.prototype.height = function (): any {
+    if (arguments.length === 0) {
         // (): number
         return this.right - this.left;
     } else {
         // (height: number): Rect
         type ExpectedArgs = [number];
-        const [height]: ExpectedArgs = args as ExpectedArgs;
+        const [height]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         const difference: number = height - (this.bottom - this.top);
         this.top -= difference / 2;
         this.bottom += difference / 2;
@@ -825,18 +825,18 @@ Rect.prototype.height = function (...args: any[]): any {
     }
 };
 
-Rect.prototype.contains = function (...args: any[]): boolean {
-    if ("x" in args[0]) {
+Rect.prototype.contains = function (): boolean {
+    if ("x" in arguments[0]) {
         // (point: IPoint): boolean
         type ExpectedArgs = [IPoint];
-        const [point]: ExpectedArgs = args as ExpectedArgs;
+        const [point]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         const containsPointX: boolean = this.left <= point.x && this.right >= point.x;
         const containsPointY: boolean = this.top <= point.y && this.bottom >= point.y;
         return containsPointX && containsPointY;
     } else {
         // (rect: IRect): boolean
         type ExpectedArgs = [IRect];
-        const [rect]: ExpectedArgs = args as ExpectedArgs;
+        const [rect]: ExpectedArgs = <ExpectedArgs>(arguments as any);
         const containsRectLeft: boolean = this.left <= rect.left && this.right >= rect.left;
         const containsRectTop: boolean = this.top <= rect.top && this.bottom >= rect.top;
         const containsRectRight: boolean = this.left <= rect.right && this.right >= rect.right;
