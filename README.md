@@ -15,7 +15,7 @@ npm i @0x2e757/math-ext
 ### How to import
 
 ```typescript
-import PromiseExt from "@0x2e757/math-ext";
+import { ... } from "@0x2e757/math-ext";
 ```
 
 ### Interfaces
