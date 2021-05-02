@@ -13,7 +13,7 @@
     ],
     "main": "./build/index.js",
     "scripts": {
-        "build": "tsc -p ."
+        "build": "tsc"
     },
     "devDependencies": {
         "typescript": "^2.9.1"
